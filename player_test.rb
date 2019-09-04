@@ -1,7 +1,7 @@
 require 'test/unit'
-require_relative 'rps'  # .rb is assumed by Ruby
+require_relative 'player'  # .rb is assumed by Ruby
 
-class RpsTest < Test::Unit::TestCase
+class PlayerTest < Test::Unit::TestCase
      
     def test_name
      
@@ -11,9 +11,9 @@ class RpsTest < Test::Unit::TestCase
         assert_equal('Matt', player.name)
     end
 
-    def welcome
-        return  "Hello, #{player}! Ready to play RPS!?!"
-    end
+    # def welcome
+    #     return  "Hello, #{player}! Ready to play RPS!?!"
+    # end
 
 end
 
