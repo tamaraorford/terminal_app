@@ -20,7 +20,19 @@ human = Player.new(name)
 
 m.instructions
 
+#Enter any key to continue
 
+hpw = 0
+cpw = 0
+
+loop do
+    hpw += 1
+    if hpw == 2 || cpw == 2 
+        break
+    end
+end
+    
+puts "You won"
 
 
 
