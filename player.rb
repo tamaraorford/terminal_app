@@ -1,5 +1,5 @@
 class Player
-    attr_reader :name
+    attr_reader :name, :items
     attr_accessor :score
   
     def initialize(name)

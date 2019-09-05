@@ -13,6 +13,7 @@ class Battle
   
   
     def new_round
+        
       return 'win'
     end
   end
