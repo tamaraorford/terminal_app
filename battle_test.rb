@@ -10,4 +10,5 @@ class Battle_Test < Test::Unit::TestCase
     end
 
 
+
 end
