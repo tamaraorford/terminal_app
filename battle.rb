@@ -1,4 +1,11 @@
+require_relative 'message.rb'
+
 class Battle
+    WIN_RULES = {
+            'r' => {'s' => 'win', 'r' => 'draw', 'p' => 'lose'},
+            'p' => {'r' => 'win', 'p' => 'draw', 's' => 'lose'},
+            's' => {'p' => 'win', 's' => 'draw', 'r' => 'lose'}
+        }
     def initialize(p1, p2)
       @p1 = p1
       @p2 = p2
@@ -6,6 +13,7 @@ class Battle
     end
   
     def start
+        # loop forever until 1 player wins the required number of rounds (or human exit the game by pressing 'q')
         loop do
             new_round
             if @p1.score == @rounds_to_win || @p2.score == @rounds_to_win
@@ -17,20 +25,18 @@ class Battle
   
   
     def new_round
-        win_rules = {
-            'r' => {'s' => 'win', 'r' => 'draw', 'p' => 'loose'},
-            'p' => {'r' => 'win', 'p' => 'draw', 's' => 'loose'},
-            's' => {'p' => 'win', 's' => 'draw', 'r' => 'loose'}
-        }
-
+        # Both players shoot
         player1_shot = @p1.shoot
         player2_shot = @p2.shoot
-        player1_result = win_rules[player1_shot][player2_shot]
-        puts "#{player1_shot} vs #{player2_shot} ==> #{@p1.name} #{player1_result}"
+    
+        # Determine the result of the current round
+        player1_result = WIN_RULES[player1_shot][player2_shot]
+    
+        show_current_result(player1_shot, player2_shot, player1_result)
 
         if player1_result == 'win'
             @p1.score += 1                          #draw is irrelevent
-        elsif player1_result == 'loose'
+        elsif player1_result == 'lose'
             @p2.score += 1
         end
         
