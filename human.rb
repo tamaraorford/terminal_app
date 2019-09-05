@@ -4,16 +4,18 @@ class Human < Player
     #override shoot method
     #gets input to choose from []
     def shoot
-      #  system 'clear'
-        puts "Enter your choice (r)ock, (p)aper, (s)cissors by pressing the corresponding key."
-        input = gets.chomp
-        while (input != 'r' && input != 'p' && input != 's' && input != 'q') do 
-            puts ("Input Error: Expecting 'r', 'p', 's' or 'q'. Try again")
-            input = gets.chomp
+      #  system 'clear'\
+        messages = Message.new
+        messages.ask_user_choice
+        item_to_shoot = gets.chomp
+        p item_to_shoot
+        while (item_to_shoot != 'q' && (!ITEMS.keys.include? item_to_shoot)) do #&& item_to_shoot != 'q'
+            messages.show_input_error
+            item_to_shoot = gets.chomp
         end
-        if input == 'q' 
+        if item_to_shoot == "q"
             exit
         end
-        return input
+        return item_to_shoot
     end
 end

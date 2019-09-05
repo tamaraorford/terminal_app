@@ -6,10 +6,10 @@ class Battle
             'p' => {'r' => 'win', 'p' => 'draw', 's' => 'lose'},
             's' => {'p' => 'win', 's' => 'draw', 'r' => 'lose'}
         }
-    def initialize(p1, p2)
+    def initialize(p1, p2, r)
       @p1 = p1
       @p2 = p2
-      @rounds_to_win = 2
+      @rounds_to_win = r
     end
   
     def start
@@ -31,16 +31,15 @@ class Battle
     
         # Determine the result of the current round
         player1_result = WIN_RULES[player1_shot][player2_shot]
-    
-        show_current_result(player1_shot, player2_shot, player1_result)
+        messages = Message.new
+        messages.show_current_result(player1_shot, player2_shot, player1_result)
 
         if player1_result == 'win'
             @p1.score += 1                          #draw is irrelevent
         elsif player1_result == 'lose'
             @p2.score += 1
         end
-        
-        puts "current score #{@p1.name}: #{@p1.score} - #{@p2.name}: #{@p2.score}"    
+        messages.show_current_score(@p1, @p2)
         return player1_result
     end
 end   
