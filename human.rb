@@ -6,6 +6,10 @@ class Human < Player
     def shoot
         puts "Enter your choice (r)ock, (p)aper, (s)cissors"
         input = gets.chomp
+        while (input != 'r' && input != 'p' && input != 's') do
+            puts ("Input Error: Expecting 'r', 'p' or 's'. Try again")
+            input = gets.chomp
+        end
         return input
-      end
+    end
 end
